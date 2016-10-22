@@ -35,7 +35,8 @@ public class Networking {
 		
 		void update() {
 			state.update();
-			send.run();
+			if(other != null)
+				send.run();
 		}
 	}
 	
@@ -47,6 +48,7 @@ public class Networking {
 			server.start();
 			server.bind(8888, 8889);
 			point = server;
+			start();
 			send = () -> server.sendToAllTCP(state);
 		}
 	}
@@ -58,6 +60,7 @@ public class Networking {
 			client.start();
 			client.connect(5000, ip, 8888, 8889);
 			point = client;
+			start();
 			send = () -> client.sendTCP(state);
 		}
 		
