@@ -34,6 +34,7 @@ public class Networking {
 	   }
 		
 		void update() {
+			if(other == null) return;
 			state.update();
 			State otherState = ObjectSpace.getRemoteObject(other, 0, State.class);
 			otherState.merge(state);
