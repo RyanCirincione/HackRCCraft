@@ -8,7 +8,7 @@ import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 public class Networking {
-	class NetworkedInstance extends Listener {
+	static class NetworkedInstance extends Listener {
 		EndPoint point;
 		State state;
 		Connection other;
@@ -39,7 +39,7 @@ public class Networking {
 		}
 	}
 	
-	class GameServer extends NetworkedInstance {
+	static class GameServer extends NetworkedInstance {
 		
 		GameServer() throws IOException {
 			super();
@@ -51,7 +51,7 @@ public class Networking {
 			
 		}
 	}
-	class GameClient extends NetworkedInstance {
+	static class GameClient extends NetworkedInstance {
 		
 		GameClient(String ip) throws IOException {
 			super();
