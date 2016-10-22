@@ -9,7 +9,7 @@ import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 public class Networking {
 	static class NetworkedInstance extends Listener {
-		EndPoint point;
+		EndPoint point; 
 		State state;
 		Connection other;
 		
@@ -28,6 +28,7 @@ public class Networking {
 				ObjectSpace objectSpace = new ObjectSpace();
 				objectSpace.register(0, state);
 				objectSpace.addConnection(connection);
+				System.out.println("Connection established: " + connection);
 			}
 			other = connection;
 	   }
@@ -48,7 +49,6 @@ public class Networking {
 			server.bind(8888, 8889);
 			point = server;
 			start();
-			
 		}
 	}
 	static class GameClient extends NetworkedInstance {
