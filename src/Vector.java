@@ -25,7 +25,7 @@ SOFTWARE.
  * This class is mutable so any operations done on an instance of this class
  * will change the internal variables.
  */
-public class Vector2 {
+public class Vector {
 	public static final double MAX_DOUBLE_PRECISION = 0.0000000000001;
 	/**
 	 * Compares two doubles for approximate equality.
@@ -48,15 +48,15 @@ public class Vector2 {
 	public static boolean equals(double d1, double d2, double margin) {
 		return Math.abs(d1 - d2) < margin;
 	}
-	/** x component of this {@link Vector2}. */
+	/** x component of this {@link Vector}. */
 	private double x;
-	/** y component of this {@link Vector2}. */
+	/** y component of this {@link Vector}. */
 	private double y;
 	
 	/**
 	 * Both the x and y components are set to 0.
 	 */
-	public Vector2() {
+	public Vector() {
 		this(0, 0);
 	}
 	
@@ -64,80 +64,80 @@ public class Vector2 {
 	 * @param x the x-component
 	 * @param y the y-component
 	 */
-	public Vector2(double x, double y) {
+	public Vector(double x, double y) {
 		this.x = x;
 		this.y = y;
 	}
 	
 	/**
 	 * Copy constructor.
-	 * @param v the {@link Vector2} to be copied
+	 * @param v the {@link Vector} to be copied
 	 */
-	public Vector2(Vector2 v) {
+	public Vector(Vector v) {
 		this(v.x, v.y);
 	}
 	
 	/**
-	 * Adds this {@link Vector2} to the specified Vector2 <i>v</i>.
+	 * Adds this {@link Vector} to the specified Vector2 <i>v</i>.
 	 * @param v Vector2 summand
 	 * @return this Vector2 after being added with <i>v</i>
 	 */
-	public Vector2 add(Vector2 v) {
+	public Vector add(Vector v) {
 		this.x += v.x;
 		this.y += v.y;
 		return this;
 	}
 	
 	/**
-	 * Subtracts the specified {@link Vector2} <i>v</i> from this Vector2.
+	 * Subtracts the specified {@link Vector} <i>v</i> from this Vector2.
 	 * @param v Vector2 subtrahend
 	 * @return this Vector2 after the subtraction operation
 	 */
-	public Vector2 sub(Vector2 v) {
+	public Vector sub(Vector v) {
 		this.x -= v.x;
 		this.y -= v.y;
 		return this;
 	}
 	
 	/**
-	 * Scales this {@link Vector2} by <i>scale</i>.
+	 * Scales this {@link Vector} by <i>scale</i>.
 	 * @param scale amount to scale this Vector2 by
 	 * @return this Vector2 after it has been scaled
 	 */
-	public Vector2 scl(double scale) {
+	public Vector scl(double scale) {
 		this.x *= scale;
 		this.y *= scale;
 		return this;
 	}
 	
 	/**
-	 * @param v other {@link Vector2} operand.
+	 * @param v other {@link Vector} operand.
 	 * @return the dot product of this Vector2 and <i>v</i>
 	 */
-	public double dot(Vector2 v) {
+	public double dot(Vector v) {
 		return this.x * v.x + this.y * v.y;
 	}
 	
 	/**
-	 * @param v other {@link Vector2} operand
+	 * @param v other {@link Vector} operand
 	 * @return the cross product of this Vector2 and <i>v</i>
 	 */
-	public double crs(Vector2 v) {
+	public double crs(Vector v) {
 		return this.x * v.y - this.y * v.x;
 	}
 	
 	/**
-	 * @return the magnitude of this {@link Vector2}
+	 * @return the magnitude of this {@link Vector}
 	 */
 	public double mag() {
 		return Math.sqrt(this.x * this.x + this.y * this.y);
 	}
 	
 	/**
-	 * Normalizes this {@link Vector2}.
+	 * Normalizes this {@link Vector}.
 	 * @return this Vector2 after it has been normalized
 	 */
-	public Vector2 nor() {
+	public Vector nor() {
 		double mag = this.mag();
 		if(!isZero()) {
 			x /= mag;
@@ -147,25 +147,25 @@ public class Vector2 {
 	}
 	
 	/**
-	 * Rotates this {@link Vector2} by <i>degrees</i>.
+	 * Rotates this {@link Vector} by <i>degrees</i>.
 	 * @param degrees degrees to rotate by
 	 * @return this Vector2 after it has been rotated
 	 */
-	public Vector2 rotate(double degrees) {
+	public Vector rotate(double degrees) {
 		return this.setAngle(degrees + this.angle());
 	}
 	
 	/**
-	 * Rotates this {@link Vector2} by <i>radians</i>.
+	 * Rotates this {@link Vector} by <i>radians</i>.
 	 * @param radians radians to rotate by
 	 * @return this Vector2 after it has been rotated
 	 */
-	public Vector2 rotateRad(double radians) {
+	public Vector rotateRad(double radians) {
 		return this.setAngleRad(radians + this.angleRad());
 	}
 	
 	/**
-	 * Checks if this {@link Vector2} is zero.
+	 * Checks if this {@link Vector} is zero.
 	 * @return true if both components equal 0, otherwise false
 	 */
 	public boolean isZero() {
@@ -173,14 +173,14 @@ public class Vector2 {
 	}
 	
 	/**
-	 * @return a new {@link Vector2} with the same x and y components as this Vector2
+	 * @return a new {@link Vector} with the same x and y components as this Vector2
 	 */
-	public Vector2 cpy() {
-		return new Vector2(this);
+	public Vector cpy() {
+		return new Vector(this);
 	}
 	
 	/**
-	 * Calculates the angle of this {@link Vector2} relative to a {@literal <1, 0>} Vector2.
+	 * Calculates the angle of this {@link Vector} relative to a {@literal <1, 0>} Vector2.
 	 * The returned angle will always be within the range of [0, 360] degrees.
 	 * Angles increase as they rotate counter-clockwise about (0, 0) starting at {@literal <1, 0>}.
 	 * @return this Vector2's angle in degrees
@@ -190,19 +190,19 @@ public class Vector2 {
 	}
 	
 	/**
-	 * Calculates the angle between this {@link Vector2} and <i>v</i>.
+	 * Calculates the angle between this {@link Vector} and <i>v</i>.
 	 * The angle will be within the range of [-180, 180].
 	 * <p>{@code v.angle(u) + v.angle() == u.angle()}.
 	 * <p>{@code v.angle(u)} could be read as: "<i>u</i> is ____ degrees away from <i>v</i>".
 	 * @param v reference Vector2
 	 * @return the angle between this Vector2 and <i>v</i> in degrees
 	 */
-	public double angle(Vector2 v) {
+	public double angle(Vector v) {
 		return Math.toDegrees(this.angleRad(v));
 	}
 	
 	/**
-	 * Calculates the angle of this {@link Vector2} relative to a {@literal <1, 0>} Vector2.
+	 * Calculates the angle of this {@link Vector} relative to a {@literal <1, 0>} Vector2.
 	 * The returned angle will always be within the range of [0, 2π] radians.
 	 * Angles increase as they rotate counter-clockwise about (0, 0) starting at {@literal <1, 0>}.
 	 * @return this Vector2's angle in radians
@@ -213,14 +213,14 @@ public class Vector2 {
 	}
 	
 	/**
-	 * Calculates the angle between this {@link Vector2} and <i>v</i>.
+	 * Calculates the angle between this {@link Vector} and <i>v</i>.
 	 * The angle will be within the range of [-π, π].
 	 * <p>{@code v.angleRad(u) + v.angleRad() == u.angleRad()}.
 	 * <p>{@code v.angleRad(u)} could be read as: "<i>u</i> is ____ radians away from <i>v</i>".
 	 * @param v reference Vector2
 	 * @return the angle between this Vector2 and <i>v</i> in radians
 	 */
-	public double angleRad(Vector2 v) {
+	public double angleRad(Vector v) {
 		return Math.atan2(this.crs(v), this.dot(v));
 	}
 	
@@ -239,52 +239,52 @@ public class Vector2 {
 	}
 	
 	/**
-	 * Sets this {@link Vector2}'s x-component.
+	 * Sets this {@link Vector}'s x-component.
 	 * @param x the x-component
 	 * @return this Vector2 after its x-component has been set
 	 */
-	public Vector2 setX(double x) {
+	public Vector setX(double x) {
 		this.x = x;
 		return this;
 	}
 	
 	/**
-	 * Sets this {@link Vector2}'s y-component.
+	 * Sets this {@link Vector}'s y-component.
 	 * @param y the y-component
 	 * @return this Vector2 after its y-component has been set
 	 */
-	public Vector2 setY(double y) {
+	public Vector setY(double y) {
 		this.y = y;
 		return this;
 	}
 	
 	/**
-	 * Sets both the x and y components of this {@link Vector2}.
+	 * Sets both the x and y components of this {@link Vector}.
 	 * @param x the x-component
 	 * @param y the y-component
 	 * @return this Vector2 after its components have been set
 	 */
-	public Vector2 set(double x, double y) {
+	public Vector set(double x, double y) {
 		this.x = x;
 		this.y = y;
 		return this;
 	}
 	
 	/**
-	 * Sets this {@link Vector2}'s angle in degrees.
+	 * Sets this {@link Vector}'s angle in degrees.
 	 * @param degrees the angle
 	 * @return this Vector2 after its angle has been set
 	 */
-	public Vector2 setAngle(double degrees) {
+	public Vector setAngle(double degrees) {
 		return this.setAngleRad(Math.toRadians(degrees));
 	}
 	
 	/**
-	 * Sets this {@link Vector2}'s angle in radians.
+	 * Sets this {@link Vector}'s angle in radians.
 	 * @param radians the angle
 	 * @return this Vector2 after its angle has been set
 	 */
-	public Vector2 setAngleRad(double radians) {
+	public Vector setAngleRad(double radians) {
 		double magnitude = this.mag();
 		this.set(Math.cos(radians), Math.sin(radians));
 		this.scl(magnitude);
@@ -293,8 +293,8 @@ public class Vector2 {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Vector2)) return false;
-		Vector2 v = (Vector2)obj;
+		if(!(obj instanceof Vector)) return false;
+		Vector v = (Vector)obj;
 		return equals(this.x, v.x) && equals(this.y, v.y);
 	}
 	

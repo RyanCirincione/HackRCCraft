@@ -8,7 +8,7 @@ public abstract class Hitbox {
 	abstract float right();
 	abstract float top();
 	abstract float bottom();
-	abstract boolean contains(Vector2 point);
+	abstract boolean contains(Vector point);
 	abstract boolean collides(Circle circ);
 	abstract boolean collides(Rectangle rect);
 }
