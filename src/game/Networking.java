@@ -1,6 +1,5 @@
 package game;
 import java.io.IOException;
-import java.util.ArrayList;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -16,11 +15,19 @@ public class Networking {
 		Runnable send;
 		
 		NetworkedInstance() {
-			state = new State(2);
+			state = new State();
 		}
 		
 		public void start() {
 			point.getKryo().register(State.class);
+			point.getKryo().register(State.Shard.class);
+			point.getKryo().register(State.Shard[].class);
+			point.getKryo().register(Character[].class);
+			point.getKryo().register(Tilemap.class);
+			point.getKryo().register(java.util.ArrayList.class);
+			point.getKryo().register(Unit.class);
+			point.getKryo().register(Hitbox.class);
+			point.getKryo().register(Vector.class);
 			point.addListener(this);
 		}
 		
