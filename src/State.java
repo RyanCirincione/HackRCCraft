@@ -6,9 +6,10 @@ public class State {
 	State(int numPlayers) {
 		players = numPlayers;
 		shards = new Shard[players];
-		for(Shard shard : shards) {
+		for(int i = 0; i < shards.length; i++) {
+			Shard shard = shards[i] = new Shard();
 			shard.units = new ArrayList<>(players);
-			for(int i = 0; i < shard.units.size(); i++) {
+			for(int j = 0; j < shard.units.size(); j++) {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
