@@ -7,6 +7,9 @@ public class State {
 	
 	State() {
 		players = 2;
+		characters = new Character[players];
+		for(int i = 0; i < characters.length; i++) 
+			characters[i] = new Character();
 		shards = new Shard[players];
 		for(int i = 0; i < shards.length; i++) {
 			Shard shard = shards[i] = new Shard();
@@ -28,6 +31,7 @@ public class State {
 	}
 	
 	Shard[] shards;
+	Character[] characters;
 	
 	void update() {
 		
