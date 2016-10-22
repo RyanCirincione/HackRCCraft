@@ -5,14 +5,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Game extends JPanel
 {
+	Networking.NetworkedInstance network;
+	
 	private static final long serialVersionUID = -8395759457708163217L;
 	
 	public static void main(String[] args)
@@ -40,6 +44,21 @@ public class Game extends JPanel
 	
 	public Game()
 	{
+		boolean host = JOptionPane.showConfirmDialog(null, "Play as host?") == JOptionPane.YES_OPTION;
+		if(host) {
+			try {
+				network = new Networking.GameServer();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} else {
+			try {
+				String ip = JOptionPane.showInputDialog("Enter the IP address of the host.");
+				network = new Networking.GameClient(ip);
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 		this.setPreferredSize(new Dimension(G_WIDTH, G_HEIGHT));
 		
 		this.addMouseMotionListener(new MouseMotionAdapter(){
@@ -82,7 +101,7 @@ public class Game extends JPanel
 	
 	public void tick()
 	{
-		
+		network.update();
 	}
 	
 	public void paintComponent(Graphics g)
