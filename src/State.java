@@ -29,4 +29,8 @@ public class State {
 	void update() {
 		
 	}
+	
+	void merge(State state) {
+		
+	}
 }
