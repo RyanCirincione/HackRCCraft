@@ -53,6 +53,7 @@ public class Networking {
 		
 		GameServer() throws IOException {
 			super();
+			state.allegiance = 0;
 			Server server = new Server();
 			server.start();
 			server.bind(8888, 8889);
@@ -65,6 +66,7 @@ public class Networking {
 		
 		GameClient(String ip) throws IOException {
 			super();
+			state.allegiance = 1;
 			Client client = new Client();
 			client.start();
 			client.connect(5000, ip, 8888, 8889);

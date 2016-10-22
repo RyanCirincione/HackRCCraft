@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class State {
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
-
+	int allegiance;
+	
 	State() {
 		players = 2;
 		shards = new Shard[players];
