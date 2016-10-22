@@ -1,10 +1,13 @@
+package game;
 import java.util.ArrayList;
 
 public class Tilemap <T> {
 	static int TILE_SIZE = 32;
 	ArrayList<ArrayList<T>> data;
 	
-	Tilemap(int width, int height) {
+	Tilemap() {
+		int width = 640;
+		int height = 480;
 		data = new ArrayList<>(width / TILE_SIZE);
 		for(int i = 0; i < width / TILE_SIZE; i++) {
 			data.add(new ArrayList<>(height / TILE_SIZE));

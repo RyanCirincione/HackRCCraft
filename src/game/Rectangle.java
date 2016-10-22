@@ -1,3 +1,4 @@
+package game;
 //TODO: Stub
 public class Rectangle extends Hitbox {
 	Vector pos, dim;

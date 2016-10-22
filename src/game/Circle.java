@@ -1,3 +1,4 @@
+package game;
 //TODO: STUB
 public class Circle extends Hitbox {
 	Vector pos;
