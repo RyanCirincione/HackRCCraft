@@ -5,13 +5,13 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.EndPoint;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 public class Networking {
-	static class NetworkedInstance extends Listener {
+	static abstract class NetworkedInstance extends Listener {
 		EndPoint point; 
 		State state;
 		Connection other;
+		Runnable send;
 		
 		NetworkedInstance() {
 			state = new State(2);
@@ -22,22 +22,20 @@ public class Networking {
 			point.addListener(this);
 		}
 		
-		public void received (Connection connection, Object object) {
-			if(other == null) {
-				ObjectSpace.registerClasses(point.getKryo());
-				ObjectSpace objectSpace = new ObjectSpace();
-				objectSpace.register(0, state);
-				objectSpace.addConnection(connection);
-				System.out.println("Connection established: " + connection);
-			}
+		@Override
+		public void connected (Connection connection) {
 			other = connection;
-	   }
+			System.out.println("Connection established: " + connection);
+		}
+		
+		@Override
+		public void received(Connection connection, Object data) {
+			state.merge((State)data);
+		}
 		
 		void update() {
-			if(other == null) return;
 			state.update();
-			State otherState = ObjectSpace.getRemoteObject(other, 0, State.class);
-			otherState.merge(state);
+			send.run();
 		}
 	}
 	
@@ -49,7 +47,7 @@ public class Networking {
 			server.start();
 			server.bind(8888, 8889);
 			point = server;
-			start();
+			send = () -> server.sendToAllTCP(state);
 		}
 	}
 	static class GameClient extends NetworkedInstance {
@@ -60,7 +58,7 @@ public class Networking {
 			client.start();
 			client.connect(5000, ip, 8888, 8889);
 			point = client;
-			start();
+			send = () -> client.sendTCP(state);
 		}
 		
 		
