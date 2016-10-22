@@ -33,7 +33,17 @@ public class State {
 	Shard[] shards;
 	Character[] characters;
 	
-	void update() {
+	void update() 
+	{
+		for(int i = 0; i < characters.length; i++)
+		{
+			double x = characters[i].box.x();
+			double y = characters[i].box.y();
+			x = x + characters[i].speed.getX();
+			y = y + characters[i].speed.getY();
+			characters[i].box.setX((float) x);
+			characters[i].box.setY((float) y);
+		}
 		
 	}
 	
