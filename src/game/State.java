@@ -2,8 +2,6 @@ package game;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import game.buildings.Barracks;
-
 public class State implements Serializable  {
 	/**
 	 * 
@@ -33,15 +31,8 @@ public class State implements Serializable  {
 				shard.characters[j] = characters[j];
 			shard.buildings = new Tilemap<>();
 			shard.buildings.set(new Reasoursepatch(), 0, 236);
+			//
 		}
-		Barracks b = new Barracks();
-		Rectangle bounds = new Rectangle();
-		bounds.setX(1);
-		bounds.setY(0);
-		bounds.setWidth(32);
-		bounds.setHeight(32);
-		b.box = bounds;
-		shards[0].buildings.set(b, 0, 0);
 	}
 	int players;
 	
@@ -124,16 +115,6 @@ public class State implements Serializable  {
 				for(int q = 0; q < shards[i].units.get(j).size(); q++)
 				{
 					shards[i].units.get(j).get(q).update(this);
-					System.out.println(shards[i].units.get(j).get(q));
-				}
-			}
-		}
-		for(Shard shard : shards) {
-			for(int i = 0; i < SHARD_WIDTH; i += Tilemap.TILE_SIZE) {
-				for(int j = 0; j < SHARD_HEIGHT; j += Tilemap.TILE_SIZE) {
-					Building built = shard.buildings.get(i, j);
-					if(built != null)
-						built.update(this);
 				}
 			}
 		}
