@@ -100,6 +100,7 @@ public class State implements Serializable  {
 					}
 			}
 		}
+		//Moves all characters by speed
 		for(int i = 0; i < characters.length; i++)
 		{
 			double x = characters[i].box.x();
@@ -109,6 +110,7 @@ public class State implements Serializable  {
 			characters[i].box.setX((float) x);
 			characters[i].box.setY((float) y);
 		}
+		//Updates all units in all shards
 		for(int i = 0; i < shards.length; i++)
 		{
 			for(int j = 0; j < shards[i].units.size(); j++)

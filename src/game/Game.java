@@ -144,15 +144,22 @@ public class Game extends JPanel
 	{
 		super.paintComponent(gr);
 		Graphics2D g = (Graphics2D) gr;
-		State.Shard shard = network.state.shards[network.state.allegiance];
+		State.Shard shard = null;//network.state.shards[network.state.allegiance];
 		Hitbox box = network.state.characters[network.state.allegiance].box;
+		
+		g.setColor(Color.black);
+		for(int s = 0; s < network.state.players; s++)
+			if(network.state.shards[s].characters[network.state.allegiance] != null)
+			{
+				shard = network.state.shards[s];
+				g.drawString(""+s, 5, 20);
+				break;
+			}
+		
 		camera.add(new Vector((box.x() - G_WIDTH/2 - camera.getX())/12,
 				(box.y() - G_HEIGHT/2 - camera.getY())/12));
 		
 		g.setColor(new Color(255, 0, 0));
-		for(int i = 0; i < network.state.players; i++)
-			for(int j = 0; j < network.state.players; j++)
-				System.out.println("Shard: " + i + " " + j + " " + network.state.shards[i].characters[j]);
 
 		for(int c = 0; c < shard.characters.length; c++)
 		{
