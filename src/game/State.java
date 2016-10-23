@@ -21,7 +21,6 @@ public class State {
 			shard.buildings = new Tilemap<>();
 		}
 	}
-	
 	int players;
 	
 	static class Shard {
@@ -32,7 +31,6 @@ public class State {
 	
 	Shard[] shards;
 	Character[] characters;
-	
 	void update() 
 	{
 		//checks to see if a unit is within a portal Note: portal is represented by a constant value not an entity may change later.
@@ -53,7 +51,6 @@ public class State {
 						{
 							current.units.get(i+1).add(current.units.get(i).get(j));
 							current.units.get(i+1).get(j).box.setX(607);
-							
 						}
 						else
 						{	
@@ -62,9 +59,6 @@ public class State {
 						}
 						current.units.get(i).remove(current.units.get(i).get(j));
 					}
-		
-	
-				
 				}
 			}
 		}
@@ -83,7 +77,7 @@ public class State {
 			{
 				for(int q = 0; q < shards[i].units.get(j).size(); q++)
 				{
-				shards[i].units.get(j).get(q).update(this);
+					shards[i].units.get(j).get(q).update(this);
 				}
 			}
 		}
