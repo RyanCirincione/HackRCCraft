@@ -140,8 +140,8 @@ public class Game extends JPanel
 	
 	public void paintComponent(Graphics gr)
 	{
+		super.paintComponent(gr);
 		Graphics2D g = (Graphics2D) gr;
-		g.clearRect(0, 0, G_WIDTH, G_HEIGHT);
 		State.Shard shard = network.state.shards[network.state.allegiance];
 		
 		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
