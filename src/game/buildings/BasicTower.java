@@ -62,9 +62,7 @@ public class BasicTower extends Building{
 			if(Math.pow(range, 2) > distance && currentDelay == 0)
 			{
 				currentDelay = maxDelay;
-				System.out.println("Before " + closest.health);
 				closest.takeHit(damage);
-				System.out.println("After " + closest.health);
 			}
 		}
 	}
