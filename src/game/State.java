@@ -1,7 +1,12 @@
 package game;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class State {
+public class State implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3411080766160081665L;
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
 	public int allegiance;
 	
@@ -29,7 +34,8 @@ public class State {
 	}
 	int players;
 	
-	public static class Shard {
+	public static class Shard implements Serializable {
+		private static final long serialVersionUID = 1L;
 		public ArrayList<ArrayList<Unit>> units;
 		public Character[] characters;
 		public Tilemap<Building> buildings;
