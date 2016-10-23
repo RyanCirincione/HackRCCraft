@@ -18,7 +18,6 @@ public class State implements Serializable  {
 		for(int i = 0; i < characters.length; i++) {
 			characters[i] = new Character();
 			characters[i].box = new Circle(20, 20, 30);
-			System.out.println(i);
 		}
 		shards = new Shard[players];
 		for(int i = 0; i < shards.length; i++) {
@@ -59,7 +58,6 @@ public class State implements Serializable  {
 				//prints units current pos
 				
 				int tempx = (int)current.units.get(i).get(j).box.x();
-				System.out.println(tempx);
 				//int tempy = (int)current.units.get(i).get(j).box.y();
 				if(tempx >= 608)
 				{
@@ -84,8 +82,6 @@ public class State implements Serializable  {
 			//teleports player
 			for(int c = 0; c <current.characters.length;c++)
 			{
-				if(current.characters[c] != null)
-					System.out.println("player" + c + " " +current.characters[c].box.x());
 				if(current.characters[c] != null)
 					if(current.characters[c].box.x() >= 608)
 					{

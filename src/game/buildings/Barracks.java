@@ -30,7 +30,6 @@ public class Barracks extends Building
 		{
 			State.Shard newShard = state.shards[this.shard];
 			Unit robot = new SimpleRobot();
-			System.out.println("Barracks: Spawned new robot");
 			Circle circ = new Circle();
 			circ.setRadius(32);
 			robot.box = circ;

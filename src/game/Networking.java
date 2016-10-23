@@ -30,7 +30,7 @@ public class Networking  {
 		@Override
 		public void connected (Connection connection) {
 			other = connection;
-			System.out.println("Connection established: " + connection);
+//			System.out.println("Connection established: " + connection);
 		}
 		
 		@Override
