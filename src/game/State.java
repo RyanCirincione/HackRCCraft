@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class State {
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
-	int allegiance;
+	public int allegiance;
 	
 	State() {
 		players = 2;
@@ -44,7 +44,16 @@ public class State {
 			characters[i].box.setX((float) x);
 			characters[i].box.setY((float) y);
 		}
-		
+		for(int i = 0; i < shards.length; i++)
+		{
+			for(int j = 0; j < shards[i].units.size(); j++)
+			{
+				for(int q = 0; q < shards[i].units.get(j).size(); q++)
+				{
+					shards[i].units.get(j).get(q).update(this);
+				}
+			}
+		}
 	}
 	
 	void merge(State state) {
