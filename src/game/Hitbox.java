@@ -14,4 +14,8 @@ public abstract class Hitbox implements Serializable {
 	abstract boolean collides(Circle circ);
 	abstract boolean collides(Rectangle rect);
 	abstract void merge(Hitbox other);
+	public String toString()
+	{
+		return x() + " " + y();
+	}
 }
