@@ -1,6 +1,8 @@
 package game;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -109,8 +111,24 @@ public class Game extends JPanel
 		network.update();
 	}
 	
-	public void paintComponent(Graphics g)
+	public void paintComponent(Graphics gr)
 	{
+		Graphics2D g = (Graphics2D) gr;
+		State.Shard shard = network.state.shards[network.state.allegiance];
 		
+		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+		
+		for(int i = 0; i < shard.units.size(); i++)
+			for(int j = 0; j < shard.units.get(i).size(); j++)
+			{
+				Unit unit = shard.units.get(i).get(j);
+				if(shard.units.get(i).get(j).box instanceof Circle)
+					g.fillOval((int)(unit.box.x() - ((Circle)unit.box).radius),
+							(int)(unit.box.y() - ((Circle)unit.box).radius),
+							 (int)(((Circle)unit.box).radius*2), (int)(((Circle)unit.box).radius*2));
+				else
+					g.fillRect((int)unit.box.x(), (int)unit.box.y(),
+							(int)((Rectangle)unit.box).dim.getX(), (int)((Rectangle)unit.box).dim.getY());
+			}
 	}
 }
