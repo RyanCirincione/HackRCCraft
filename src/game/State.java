@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class State {
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
-	int allegiance;
+	public int allegiance;
 	
 	State() {
 		players = 2;
@@ -35,6 +35,39 @@ public class State {
 	
 	void update() 
 	{
+		//checks to see if a unit is within a portal Note: portal is represented by a constant value not an entity may change later.
+		for(int i = 0; i < players;i++)
+		{
+			Shard current = shards[i];
+			for(int j = 0;j < current.units.get(i).size();j++)
+			{
+				int tempx = (int)current.units.get(i).get(j).box.x();
+				int tempy = (int)current.units.get(i).get(j).box.y();
+				if(tempx >= 608)
+				{
+					if(players == 2)
+					{
+						//checks to see what aray the unit is in
+						//spawns units 1 pixel in front of the portal can be changed by modifing the setx int
+						if (i < 1)  
+						{
+							current.units.get(i+1).add(current.units.get(i).get(j));
+							current.units.get(i+1).get(j).box.setX(607);
+							
+						}
+						else
+						{	
+							current.units.get(i-1).add(current.units.get(i).get(j));
+							current.units.get(i+1).get(j).box.setX(607);
+						}
+						current.units.get(i).remove(current.units.get(i).get(j));
+					}
+		
+	
+				
+				}
+			}
+		}
 		for(int i = 0; i < characters.length; i++)
 		{
 			double x = characters[i].box.x();
@@ -44,9 +77,17 @@ public class State {
 			characters[i].box.setX((float) x);
 			characters[i].box.setY((float) y);
 		}
-		
+		for(int i = 0; i < shards.length; i++)
+		{
+			for(int j = 0; j < shards[i].units.size(); j++)
+			{
+				for(int q = 0; q < shards[i].units.get(j).size(); q++)
+				{
+				shards[i].units.get(j).get(q).update(this);
+				}
+			}
+		}
 	}
-	
 	void merge(State state) {
 		//TODO: Merge states
 	}

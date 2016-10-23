@@ -1,10 +1,10 @@
 package game;
 
 public abstract class Entity {
-	Hitbox box;
-	float health;
-	int player;
-	boolean dead;
+	public Hitbox box;
+	public float health;
+	public int player;
+	public boolean dead;
 	
 	void takeHit(float amount) {
 		if(health < amount) dead = true;
