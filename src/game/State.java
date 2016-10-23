@@ -26,14 +26,14 @@ public class State {
 	
 	int players;
 	
-	static class Shard {
-		ArrayList<ArrayList<Unit>> units;
-		Character[] characters;
-		Tilemap<Building> buildings;
+	public static class Shard {
+		public ArrayList<ArrayList<Unit>> units;
+		public Character[] characters;
+		public Tilemap<Building> buildings;
 	}
 	
-	Shard[] shards;
-	Character[] characters;
+	public Shard[] shards;
+	public Character[] characters;
 	
 	void update() 
 	{
