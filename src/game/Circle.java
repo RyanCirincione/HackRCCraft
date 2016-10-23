@@ -9,26 +9,26 @@ public class Circle extends Hitbox {
 	}
 
 	@Override
-	float x()
+	public double x()
 	{
-		return (float)pos.getX();
+		return pos.getX();
 	}
 
 	@Override
-	Hitbox setX(float x)
+	public Hitbox setX(double x)
 	{
 		pos.setX(x);
 		return this;
 	}
 
 	@Override
-	float y()
+	public double y()
 	{
-		return (float)pos.getY();
+		return pos.getY();
 	}
 
 	@Override
-	Hitbox setY(float y)
+	public Hitbox setY(double y)
 	{
 		pos.setY(y);
 		return this;
@@ -52,8 +52,8 @@ public class Circle extends Hitbox {
 	@Override
 	boolean collides(Rectangle rect)
 	{
-		float closestX = x();
-		float closestY = y();
+		double closestX = x();
+		double closestY = y();
 
 		if (x() < rect.x()) {
 			closestX = rect.x();
@@ -80,5 +80,11 @@ public class Circle extends Hitbox {
 	{
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public void merge(Hitbox box) {
+		Circle circ = (Circle)box;
+		pos.set(circ.x(), circ.y());
+		radius = circ.radius;
 	}
 }

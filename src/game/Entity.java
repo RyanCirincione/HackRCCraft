@@ -11,11 +11,11 @@ public abstract class Entity {
 		if(health < amount) dead = true;
 		else health -= amount;
 	}
-	void isDead()
-	{
-		if(box.x() <= 0)
-		{
-			dead = true;
-		}
+
+	public void merge(Entity other) {
+		box.merge(other.box);
+		health = other.health;
+		player = other.player;
+		dead = other.dead;
 	}
 }
