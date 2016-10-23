@@ -24,27 +24,23 @@ public class Game extends JPanel
 	
 	public static void main(String[] args)
 	{
-		try {
-			JFrame frame = new JFrame("HackRCCraft");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			Game panel = new Game();
-			frame.getContentPane().add(panel);
-			
-			frame.pack();
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
-			
-			Timer timer = new Timer();
-			timer.scheduleAtFixedRate(new TimerTask(){
-				public void run(){
-					panel.tick();
-					panel.repaint();
-				}
-			}, 0, 1000/60);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		JFrame frame = new JFrame("HackRCCraft");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Game panel = new Game();
+		frame.getContentPane().add(panel);
+		
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask(){
+			public void run(){
+				panel.tick();
+				panel.repaint();
+			}
+		}, 0, 1000/60);
 	}
 	
 	static int G_WIDTH = 800, G_HEIGHT = 600;

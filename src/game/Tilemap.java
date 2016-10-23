@@ -1,7 +1,8 @@
 package game;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tilemap <T extends Entity> {
+public class Tilemap <T extends Entity> implements Serializable {
 	static int TILE_SIZE = 32;
 	ArrayList<ArrayList<T>> data;
 	

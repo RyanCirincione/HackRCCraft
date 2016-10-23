@@ -1,31 +1,41 @@
 package game;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class State {
+public class State implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3411080766160081665L;
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
 	public int allegiance;
 	
 	State() {
 		players = 2;
 		characters = new Character[players];
-		for(int i = 0; i < characters.length; i++) 
+		for(int i = 0; i < characters.length; i++) {
 			characters[i] = new Character();
+			characters[i].box = new Circle();
+			System.out.println(i);
+		}
 		shards = new Shard[players];
 		for(int i = 0; i < shards.length; i++) {
-			Shard shard = shards[i] = new Shard();
+			shards[i] = new Shard();
+			Shard shard = shards[i];
 			shard.units = new ArrayList<>(players);
 			for(int j = 0; j < players; j++) {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
-			for(int j = 0; i < shard.characters.length; i++)
-				shard.characters[i] = new Character();
+			for(int j = 0; j < shard.characters.length; j++)
+				shard.characters[j] = new Character();
 			shard.buildings = new Tilemap<>();
 		}
 	}
 	int players;
 	
-	public static class Shard {
+	public static class Shard implements Serializable {
+		private static final long serialVersionUID = 1L;
 		public ArrayList<ArrayList<Unit>> units;
 		public Character[] characters;
 		public Tilemap<Building> buildings;
@@ -84,6 +94,7 @@ public class State {
 			}
 		}
 	}
+	
 	void merge(State state) {
 		//TODO: Merge states
 	}

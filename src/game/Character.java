@@ -2,6 +2,7 @@ package game;
 
 public class Character extends Entity 
 {
+	private static final long serialVersionUID = 1L;
 	public Vector speed;
 	
 	public Character() {
@@ -14,4 +15,5 @@ public class Character extends Entity
 		Character c = (Character)other;
 		speed.set(c.speed.getX(), c.speed.getY());
 	}
+	
 }
