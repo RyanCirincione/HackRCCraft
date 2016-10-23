@@ -15,6 +15,20 @@ public class SimpleRobot extends Unit {
 		if (box.x() <= 0) {
 			dead = true;
 		}
+		State.Shard thisShard = state.shards[this.shard];
+		for(int i = 0; i < thisShard.units.size(); i++)
+		{
+			if(thisShard.units.get(state.allegiance).get(i).box.x() == box.x() - 1 || 
+					thisShard.units.get(state.allegiance).get(i).box.x() == box.x() + 1)
+			{
+				thisShard.units.get(state.allegiance).get(i).health -= 1;
+			}
+			if(thisShard.units.get(state.allegiance).get(i).box.y() == box.y() - 1 || 
+					thisShard.units.get(state.allegiance).get(i).box.y() == box.y() + 1)
+			{
+				thisShard.units.get(state.allegiance).get(i).health -= 1;
+			}
+		}
 	}
 
 }
