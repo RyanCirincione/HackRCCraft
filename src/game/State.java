@@ -10,7 +10,7 @@ public class State {
 		characters = new Character[players];
 		for(int i = 0; i < characters.length; i++) {
 			characters[i] = new Character();
-			characters[i].box = new Circle();
+			characters[i].box = new Circle(20, 20, 30);
 			System.out.println(i);
 		}
 		shards = new Shard[players];
@@ -23,7 +23,7 @@ public class State {
 			}
 			shard.characters = new Character[players];
 			for(int j = 0; j < shard.characters.length; j++)
-				shard.characters[j] = new Character();
+				shard.characters[j] = characters[j];
 			shard.buildings = new Tilemap<>();
 		}
 	}
@@ -46,7 +46,7 @@ public class State {
 			for(int j = 0;j < current.units.get(i).size();j++)
 			{
 				int tempx = (int)current.units.get(i).get(j).box.x();
-				int tempy = (int)current.units.get(i).get(j).box.y();
+//				int tempy = (int)current.units.get(i).get(j).box.y();
 				if(tempx >= 608)
 				{
 					if(players == 2)
