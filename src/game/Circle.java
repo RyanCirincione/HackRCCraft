@@ -47,7 +47,7 @@ public class Circle extends Hitbox {
 		return (float)radius;
 	}
 	
-	Hitbox setRadius(float radius){
+	public Hitbox setRadius(float radius){
 		this.radius = radius;
 		return this;
 	}
@@ -95,5 +95,15 @@ public class Circle extends Hitbox {
 		Circle circ = (Circle)box;
 		pos.set(circ.x(), circ.y());
 		radius = circ.radius;
+	}
+
+	@Override
+	public double centerX() {
+		return pos.getX();
+	}
+
+	@Override
+	public double centerY() {
+		return pos.getY();
 	}
 }

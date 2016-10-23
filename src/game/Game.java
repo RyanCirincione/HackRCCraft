@@ -140,6 +140,7 @@ public class Game extends JPanel
 	
 	public void paintComponent(Graphics gr)
 	{
+		super.paintComponent(gr);
 		Graphics2D g = (Graphics2D) gr;
 		State.Shard shard = network.state.shards[network.state.allegiance];
 		
@@ -168,7 +169,7 @@ public class Game extends JPanel
 		
 		for(int x = 0; x < shard.buildings.data.size(); x++)
 			for(int y = 0; y < shard.buildings.data.get(x).size(); y++)
-				if(shard.buildings.get(x, y) != null)
+				if(shard.buildings.data.get(x).get(y) != null)
 				{
 					g.fillRect(x*Tilemap.TILE_SIZE, y*Tilemap.TILE_SIZE,
 							Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);

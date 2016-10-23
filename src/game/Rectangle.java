@@ -15,6 +15,11 @@ public class Rectangle extends Hitbox {
 	{
 		return pos.getX();
 	}
+	
+	public double centerX()
+	{
+		return pos.getX() + width() / 2;
+	}
 
 	@Override
 	public Hitbox setX(double x)
@@ -27,6 +32,11 @@ public class Rectangle extends Hitbox {
 	public double y()
 	{
 		return (float)pos.getY();
+	}
+	
+	public double centerY()
+	{
+		return pos.getY() + height() / 2;
 	}
 
 	@Override
