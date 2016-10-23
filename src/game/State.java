@@ -21,6 +21,7 @@ public class State {
 			for(int j = 0; i < shard.characters.length; i++)
 				shard.characters[i] = new Character();
 			shard.buildings = new Tilemap<>();
+			shard.buildings.set(new Reasoursepatch(), 0, 236);
 		}
 	}
 	int players;
@@ -61,6 +62,18 @@ public class State {
 						}
 						current.units.get(i).remove(current.units.get(i).get(j));
 					}
+				}
+			}
+			//teleports player
+			if(current.characters[i].box.x() >= 608)
+			{
+				if(i > 0)
+				{
+					current.characters[i].shard = i + 1;
+				}
+				else
+				{
+					current.characters[i].shard = i - 1;
 				}
 			}
 		}
