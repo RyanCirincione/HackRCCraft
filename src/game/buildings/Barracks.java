@@ -23,7 +23,7 @@ public class Barracks extends Building
 			robot.box.setX(box.x());
 			robot.box.setY(box.y());
 			newShard.units.get(this.player).add(robot);
-			cooldown = 300;
+			cooldown = 120;
 		}
 		else
 		{
