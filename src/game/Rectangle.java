@@ -10,26 +10,26 @@ public class Rectangle extends Hitbox {
 	}
 	
 	@Override
-	float x()
+	public float x()
 	{
 		return (float)pos.getX();
 	}
 
 	@Override
-	Hitbox setX(float x)
+	public Hitbox setX(float x)
 	{
 		pos.setX(x);
 		return null;
 	}
 
 	@Override
-	float y()
+	public float y()
 	{
 		return (float)pos.getY();
 	}
 
 	@Override
-	Hitbox setY(float y)
+	public Hitbox setY(float y)
 	{
 		pos.setY(y);
 		return this;
