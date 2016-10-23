@@ -13,42 +13,44 @@ public class BasicTower extends Building{
 	private int currentDelay = 0;
 	public void update(State state)
 	{
-		if(currentDelay != 0)
-		{
-			currentDelay--;
-		}
 		/** @closest Unit that is closest to the tower.*/
 		Unit closest = null;
 		/** @distance Square of distance in pixels between tower and the closest unit.*/
 		double distance = Integer.MAX_VALUE;
-		for(int x = 0; x < state.shards[shard].units.size(); x++)
+		if(currentDelay != 0)
 		{
-			for(int y = 0; y < state.shards[shard].units.get(x).size(); y++)
+			currentDelay--;
+		} else
+		{
+			for(int x = 0; x < state.shards[shard].units.size(); x++)
 			{
-				if(state.shards[shard].units.get(x).get(y).player == player)
+				for(int y = 0; y < state.shards[shard].units.get(x).size(); y++)
 				{
-					break;
-				} else
-				{
-					if(closest == null)
+					if(state.shards[shard].units.get(x).get(y).player == player)
 					{
-						closest = state.shards[shard].units.get(x).get(y);
-						distance = Math.pow(state.shards[shard].units.get(x).get(y).box.centerX(), 2) +
-								 Math.pow(state.shards[shard].units.get(x).get(y).box.centerY(), 2);
-					} else if(Math.pow(state.shards[shard].units.get(x).get(y).box.centerX(), 2) +
-							Math.pow(state.shards[shard].units.get(x).get(y).box.centerY(), 2) < distance)
+						break;
+					} else
 					{
-						closest = state.shards[shard].units.get(x).get(y);
-						distance = Math.pow(state.shards[shard].units.get(x).get(y).box.centerX(), 2) +
-								Math.pow(state.shards[shard].units.get(x).get(y).box.centerY(), 2);
+						if(closest == null)
+						{
+							closest = state.shards[shard].units.get(x).get(y);
+							distance = Math.pow(state.shards[shard].units.get(x).get(y).box.centerX(), 2) +
+									 Math.pow(state.shards[shard].units.get(x).get(y).box.centerY(), 2);
+						} else if(Math.pow(state.shards[shard].units.get(x).get(y).box.centerX(), 2) +
+								Math.pow(state.shards[shard].units.get(x).get(y).box.centerY(), 2) < distance)
+						{
+							closest = state.shards[shard].units.get(x).get(y);
+							distance = Math.pow(state.shards[shard].units.get(x).get(y).box.centerX(), 2) +
+									Math.pow(state.shards[shard].units.get(x).get(y).box.centerY(), 2);
+						}
 					}
 				}
 			}
-		}
-		if(Math.pow(range, 2) > distance && currentDelay == 0)
-		{
-			currentDelay = maxDelay;
-			closest.takeHit(damage);
+			if(Math.pow(range, 2) > distance && currentDelay == 0)
+			{
+				currentDelay = maxDelay;
+				closest.takeHit(damage);
+			}
 		}
 	}
 }
