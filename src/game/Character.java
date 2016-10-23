@@ -1,7 +1,5 @@
 package game;
 
-import java.nio.ByteBuffer;
-
 public class Character extends Entity 
 {
 	public Vector speed;
@@ -17,8 +15,4 @@ public class Character extends Entity
 		speed.set(c.speed.getX(), c.speed.getY());
 	}
 	
-	public void serialize(ByteBuffer buffer) {
-		super.serialize(buffer);
-		speed.serialize(buffer);
-	}
 }

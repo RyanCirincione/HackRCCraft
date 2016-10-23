@@ -4,10 +4,8 @@ import java.util.ArrayList;
 public class State {
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
 	public int allegiance;
-	private byte[] buffer;
 	
 	State() {
-		buffer = new byte[1024];
 		players = 2;
 		characters = new Character[players];
 		for(int i = 0; i < characters.length; i++) {
@@ -89,10 +87,6 @@ public class State {
 				}
 			}
 		}
-	}
-	
-	public byte[] serialize() {
-		
 	}
 	
 	void merge(State state) {

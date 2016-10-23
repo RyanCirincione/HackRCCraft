@@ -1,7 +1,5 @@
 package game;
 
-import java.nio.ByteBuffer;
-
 //TODO: Stub
 public class Rectangle extends Hitbox {
 	Vector pos, dim;
@@ -85,16 +83,5 @@ public class Rectangle extends Hitbox {
 		Rectangle other = (Rectangle)box;
 		pos.set(other.x(), other.y());
 		dim.set(other.width(), other.height());
-	}
-	
-	public void serialize(ByteBuffer buffer) {
-		buffer.put((byte)0);
-		pos.serialize(buffer);
-		dim.serialize(buffer);
-	}
-	
-	public void deserialize(ByteBuffer buffer) {
-		pos.deserialize(buffer);
-		dim.deserialize(buffer);
 	}
 }

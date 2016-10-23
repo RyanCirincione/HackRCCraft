@@ -1,7 +1,5 @@
 package game;
 
-import java.nio.ByteBuffer;
-
 public abstract class Entity {
 	public Hitbox box;
 	public float health;
@@ -23,13 +21,5 @@ public abstract class Entity {
 		health = other.health;
 		player = other.player;
 		dead = other.dead;
-	}
-	
-	public void serialize(ByteBuffer buffer) {
-		box.serialize(buffer);
-		buffer.putFloat(health);
-		buffer.putInt(player);
-		buffer.putInt(shard);
-		buffer.put(dead ? (byte)1 : (byte)0);
 	}
 }
