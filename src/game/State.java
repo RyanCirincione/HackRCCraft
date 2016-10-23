@@ -18,19 +18,21 @@ public class State {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
+			for(int j = 0; i < shard.characters.length; i++)
+				shard.characters[i] = new Character();
 			shard.buildings = new Tilemap<>();
 		}
 	}
 	int players;
 	
-	static class Shard {
-		ArrayList<ArrayList<Unit>> units;
-		Character[] characters;
-		Tilemap<Building> buildings;
+	public static class Shard {
+		public ArrayList<ArrayList<Unit>> units;
+		public Character[] characters;
+		public Tilemap<Building> buildings;
 	}
 	
-	Shard[] shards;
-	Character[] characters;
+	public Shard[] shards;
+	public Character[] characters;
 	void update() 
 	{
 		//checks to see if a unit is within a portal Note: portal is represented by a constant value not an entity may change later.
