@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import game.buildings.Barracks;
+import game.buildings.BasicTower;
 
 public class State implements Serializable  {
 	/**
@@ -71,7 +72,7 @@ public class State implements Serializable  {
 							current.units.get(i+1).get(j).box.setX(607);
 						}
 						else
-						{	
+						{
 							current.units.get(i-1).add(current.units.get(i).get(j));
 							current.units.get(i+1).get(j).box.setX(607);
 						}
@@ -135,6 +136,6 @@ public class State implements Serializable  {
 	
 	void merge(State state) {
 		//TODO: Merge states
-		System.out.println(state.characters[1].box);
+		System.out.println(state.characters[0].box);
 	}
 }

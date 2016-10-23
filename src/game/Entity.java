@@ -24,10 +24,10 @@ public abstract class Entity implements Serializable {
 	}
 
 	public void takeHit(float amount) {
+		health -= amount;
 		if (health < amount)
 			dead = true;
-		else
-			health -= amount;
+		
 	}
 
 	public void merge(Entity other) {
