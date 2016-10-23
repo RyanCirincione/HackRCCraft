@@ -10,6 +10,12 @@ public class Circle extends Hitbox {
 		pos = new Vector();
 		radius = 0;
 	}
+	
+	public Circle(double x, double y, double radius)
+	{
+		pos = new Vector(x, y);
+		this.radius = radius;
+	}
 
 	@Override
 	public double x()

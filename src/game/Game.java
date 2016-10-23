@@ -144,6 +144,12 @@ public class Game extends JPanel
 		State.Shard shard = network.state.shards[network.state.allegiance];
 		
 		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+
+		Character cha = shard.characters[network.state.allegiance];
+		if(cha != null)
+			g.fillOval((int)(cha.box.x() - ((Circle)cha.box).radius),
+					(int)(cha.box.y() - ((Circle)cha.box).radius),
+					 (int)(((Circle)cha.box).radius*2), (int)(((Circle)cha.box).radius*2));
 		
 		for(int i = 0; i < shard.units.size(); i++)
 			for(int j = 0; j < shard.units.get(i).size(); j++)

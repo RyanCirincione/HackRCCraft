@@ -17,7 +17,7 @@ public class State implements Serializable  {
 		characters = new Character[players];
 		for(int i = 0; i < characters.length; i++) {
 			characters[i] = new Character();
-			characters[i].box = new Circle();
+			characters[i].box = new Circle(20, 20, 30);
 			System.out.println(i);
 		}
 		shards = new Shard[players];
@@ -30,8 +30,9 @@ public class State implements Serializable  {
 			}
 			shard.characters = new Character[players];
 			for(int j = 0; j < shard.characters.length; j++)
-				shard.characters[j] = new Character();
+				shard.characters[j] = characters[j];
 			shard.buildings = new Tilemap<>();
+			shard.buildings.set(new Reasoursepatch(), 0, 236);
 		}
 		Barracks b = new Barracks();
 		Rectangle bounds = new Rectangle();
@@ -62,7 +63,7 @@ public class State implements Serializable  {
 			for(int j = 0;j < current.units.get(i).size();j++)
 			{
 				int tempx = (int)current.units.get(i).get(j).box.x();
-				int tempy = (int)current.units.get(i).get(j).box.y();
+//				int tempy = (int)current.units.get(i).get(j).box.y();
 				if(tempx >= 608)
 				{
 					if(players == 2)
@@ -81,6 +82,18 @@ public class State implements Serializable  {
 						}
 						current.units.get(i).remove(current.units.get(i).get(j));
 					}
+				}
+			}
+			//teleports player
+			if(current.characters[i].box.x() >= 608)
+			{
+				if(i > 0)
+				{
+					current.characters[i].shard = i + 1;
+				}
+				else
+				{
+					current.characters[i].shard = i - 1;
 				}
 			}
 		}
