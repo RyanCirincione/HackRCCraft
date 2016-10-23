@@ -1,6 +1,9 @@
 package game;
 
-public abstract class Hitbox {
+import java.io.Serializable;
+
+public abstract class Hitbox implements Serializable {
+	private static final long serialVersionUID = 1L;
 	public abstract double x();
 	public abstract double centerX();
 	public abstract Hitbox setX(double x);

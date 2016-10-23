@@ -1,7 +1,8 @@
 package game;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tilemap <T extends Entity> {
+public class Tilemap <T extends Entity> implements Serializable {
 	static int TILE_SIZE = 32;
 	ArrayList<ArrayList<T>> data;
 	
@@ -17,13 +18,13 @@ public class Tilemap <T extends Entity> {
 		}
 	}
 	
-	T get(int x, int y) {
+	public T get(int x, int y) {
 		x /= TILE_SIZE;
 		y /= TILE_SIZE;
 		return data.get(x).get(y);
 	}
 	
-	void set(T object, int x, int y) {
+	public void set(T object, int x, int y) {
 		x /= TILE_SIZE;
 		y /= TILE_SIZE;
 		data.get(x).set(y, object);

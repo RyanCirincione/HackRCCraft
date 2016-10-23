@@ -1,32 +1,52 @@
 package game;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class State {
+import game.buildings.Barracks;
+
+public class State implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3411080766160081665L;
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
 	public int allegiance;
 	
 	State() {
 		players = 2;
 		characters = new Character[players];
-		for(int i = 0; i < characters.length; i++) 
+		for(int i = 0; i < characters.length; i++) {
 			characters[i] = new Character();
+			characters[i].box = new Circle(20, 20, 30);
+			System.out.println(i);
+		}
 		shards = new Shard[players];
 		for(int i = 0; i < shards.length; i++) {
-			Shard shard = shards[i] = new Shard();
+			shards[i] = new Shard();
+			Shard shard = shards[i];
 			shard.units = new ArrayList<>(players);
 			for(int j = 0; j < players; j++) {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
-			for(int j = 0; i < shard.characters.length; i++)
-				shard.characters[i] = new Character();
+			for(int j = 0; j < shard.characters.length; j++)
+				shard.characters[j] = characters[j];
 			shard.buildings = new Tilemap<>();
+			shard.buildings.set(new Reasoursepatch(), 0, 236);
 		}
+		Barracks b = new Barracks();
+		Rectangle bounds = new Rectangle();
+		bounds.setX(1);
+		bounds.setY(0);
+		bounds.setWidth(32);
+		bounds.setHeight(32);
+		b.box = bounds;
+		shards[0].buildings.set(b, 0, 0);
 	}
 	int players;
 	
-	public static class Shard {
-		/**@units First dimension is player who owns it, second is the unit. */
+	public static class Shard implements Serializable {
+		private static final long serialVersionUID = 1L;
 		public ArrayList<ArrayList<Unit>> units;
 		public Character[] characters;
 		public Tilemap<Building> buildings;
@@ -43,7 +63,7 @@ public class State {
 			for(int j = 0;j < current.units.get(i).size();j++)
 			{
 				int tempx = (int)current.units.get(i).get(j).box.x();
-				int tempy = (int)current.units.get(i).get(j).box.y();
+//				int tempy = (int)current.units.get(i).get(j).box.y();
 				if(tempx >= 608)
 				{
 					if(players == 2)
@@ -64,6 +84,18 @@ public class State {
 					}
 				}
 			}
+			//teleports player
+			if(current.characters[i].box.x() >= 608)
+			{
+				if(i > 0)
+				{
+					current.characters[i].shard = i + 1;
+				}
+				else
+				{
+					current.characters[i].shard = i - 1;
+				}
+			}
 		}
 		for(int i = 0; i < characters.length; i++)
 		{
@@ -81,10 +113,21 @@ public class State {
 				for(int q = 0; q < shards[i].units.get(j).size(); q++)
 				{
 					shards[i].units.get(j).get(q).update(this);
+					System.out.println(shards[i].units.get(j).get(q));
+				}
+			}
+		}
+		for(Shard shard : shards) {
+			for(int i = 0; i < SHARD_WIDTH; i += Tilemap.TILE_SIZE) {
+				for(int j = 0; j < SHARD_HEIGHT; j += Tilemap.TILE_SIZE) {
+					Building built = shard.buildings.get(i, j);
+					if(built != null)
+						built.update(this);
 				}
 			}
 		}
 	}
+	
 	void merge(State state) {
 		//TODO: Merge states
 	}

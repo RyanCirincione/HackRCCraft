@@ -24,27 +24,23 @@ public class Game extends JPanel
 	
 	public static void main(String[] args)
 	{
-		try {
-			JFrame frame = new JFrame("HackRCCraft");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			Game panel = new Game();
-			frame.getContentPane().add(panel);
-			
-			frame.pack();
-			frame.setLocationRelativeTo(null);
-			frame.setVisible(true);
-			
-			Timer timer = new Timer();
-			timer.scheduleAtFixedRate(new TimerTask(){
-				public void run(){
-					panel.tick();
-					panel.repaint();
-				}
-			}, 0, 1000/60);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		JFrame frame = new JFrame("HackRCCraft");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Game panel = new Game();
+		frame.getContentPane().add(panel);
+		
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
+		
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask(){
+			public void run(){
+				panel.tick();
+				panel.repaint();
+			}
+		}, 0, 1000/60);
 	}
 	
 	static int G_WIDTH = 800, G_HEIGHT = 600;
@@ -144,10 +140,17 @@ public class Game extends JPanel
 	
 	public void paintComponent(Graphics gr)
 	{
+		super.paintComponent(gr);
 		Graphics2D g = (Graphics2D) gr;
 		State.Shard shard = network.state.shards[network.state.allegiance];
 		
 		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+
+		Character cha = shard.characters[network.state.allegiance];
+		if(cha != null)
+			g.fillOval((int)(cha.box.x() - ((Circle)cha.box).radius),
+					(int)(cha.box.y() - ((Circle)cha.box).radius),
+					 (int)(((Circle)cha.box).radius*2), (int)(((Circle)cha.box).radius*2));
 		
 		for(int i = 0; i < shard.units.size(); i++)
 			for(int j = 0; j < shard.units.get(i).size(); j++)
@@ -161,5 +164,15 @@ public class Game extends JPanel
 					g.fillRect((int)unit.box.x(), (int)unit.box.y(),
 							(int)((Rectangle)unit.box).dim.getX(), (int)((Rectangle)unit.box).dim.getY());
 			}
+
+		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+		
+		for(int x = 0; x < shard.buildings.data.size(); x++)
+			for(int y = 0; y < shard.buildings.data.get(x).size(); y++)
+				if(shard.buildings.data.get(x).get(y) != null)
+				{
+					g.fillRect(x*Tilemap.TILE_SIZE, y*Tilemap.TILE_SIZE,
+							Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
+				}
 	}
 }
