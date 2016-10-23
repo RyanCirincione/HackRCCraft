@@ -1,10 +1,10 @@
 package game;
 
 public abstract class Hitbox {
-	public abstract float x();
-	public abstract Hitbox setX(float x);
-	public abstract float y();
-	public abstract Hitbox setY(float y);
+	public abstract double x();
+	public abstract Hitbox setX(double x);
+	public abstract double y();
+	public abstract Hitbox setY(double y);
 	abstract boolean contains(Vector point);
 	abstract boolean collides(Circle circ);
 	abstract boolean collides(Rectangle rect);
