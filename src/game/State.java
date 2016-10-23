@@ -3,9 +3,13 @@ import java.util.ArrayList;
 
 public class State {
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
-
+	public int allegiance;
+	
 	State() {
 		players = 2;
+		characters = new Character[players];
+		for(int i = 0; i < characters.length; i++) 
+			characters[i] = new Character();
 		shards = new Shard[players];
 		for(int i = 0; i < shards.length; i++) {
 			Shard shard = shards[i] = new Shard();
@@ -27,6 +31,7 @@ public class State {
 	}
 	
 	Shard[] shards;
+	Character[] characters;
 	
 	void update() 
 	{
@@ -57,11 +62,32 @@ public class State {
 						}
 						current.units.get(i).remove(current.units.get(i).get(j));
 					}
+		
+	
+				
+				}
+			}
+		}
+		for(int i = 0; i < characters.length; i++)
+		{
+			double x = characters[i].box.x();
+			double y = characters[i].box.y();
+			x = x + characters[i].speed.getX();
+			y = y + characters[i].speed.getY();
+			characters[i].box.setX((float) x);
+			characters[i].box.setY((float) y);
+		}
+		for(int i = 0; i < shards.length; i++)
+		{
+			for(int j = 0; j < shards[i].units.size(); j++)
+			{
+				for(int q = 0; q < shards[i].units.get(j).size(); q++)
+				{
+				shards[i].units.get(j).get(q).update(this);
 				}
 			}
 		}
 	}
-	
 	void merge(State state) {
 		
 	}
