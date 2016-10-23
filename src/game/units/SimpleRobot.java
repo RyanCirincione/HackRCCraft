@@ -8,9 +8,9 @@ public class SimpleRobot extends Unit {
 	@Override
 	public void update(State state) {
 		if (this.player == state.allegiance) {
-			box.setX(box.x() + 1);
+			box.setX(box.x() + 2);
 		} else {
-			box.setX(box.y() - 1);
+			box.setX(box.y() - 2);
 		}
 		if (box.x() <= 0) {
 			dead = true;
