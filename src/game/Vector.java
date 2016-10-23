@@ -1,5 +1,7 @@
 package game;
 
+import java.io.Serializable;
+
 /**
  * MIT License
 
@@ -27,7 +29,7 @@ SOFTWARE.
  * This class is mutable so any operations done on an instance of this class
  * will change the internal variables.
  */
-public class Vector {
+public class Vector implements Serializable {
 	public static final double MAX_DOUBLE_PRECISION = 0.0000000000001;
 	/**
 	 * Compares two doubles for approximate equality.

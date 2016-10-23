@@ -1,13 +1,17 @@
 package game;
 import java.io.IOException;
 
+import org.nustaq.serialization.FSTConfiguration;
+
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.EndPoint;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
-public class Networking {
+public class Networking  {
+	static FSTConfiguration conf = FSTConfiguration.createDefaultConfiguration();
+	
 	static abstract class NetworkedInstance extends Listener {
 		EndPoint point; 
 		State state;
@@ -19,18 +23,7 @@ public class Networking {
 		}
 		
 		public void start() {
-			point.getKryo().register(State.class);
-			point.getKryo().register(State.Shard.class);
-			point.getKryo().register(State.Shard[].class);
-			point.getKryo().register(Character.class);
-			point.getKryo().register(Character[].class);
-			point.getKryo().register(Tilemap.class);
-			point.getKryo().register(java.util.ArrayList.class);
-			point.getKryo().register(Unit.class);
-			point.getKryo().register(Hitbox.class);
-			point.getKryo().register(Vector.class);
-			point.getKryo().register(Circle.class);
-			point.getKryo().register(Rectangle.class);
+			point.getKryo().register(byte[].class);
 			point.addListener(this);
 		}
 		
@@ -42,7 +35,8 @@ public class Networking {
 		
 		@Override
 		public void received(Connection connection, Object data) {
-			state.merge((State)data);
+			State networked = (State)conf.asObject((byte[])data);
+			state.merge(networked);
 		}
 		
 		void update() {
@@ -62,7 +56,7 @@ public class Networking {
 			server.bind(8888, 8889);
 			point = server;
 			start();
-			send = () -> server.sendToAllTCP(state);
+			send = () -> server.sendToAllTCP(conf.asByteArray(state));
 		}
 	}
 	static class GameClient extends NetworkedInstance {
@@ -75,7 +69,7 @@ public class Networking {
 			client.connect(5000, ip, 8888, 8889);
 			point = client;
 			start();
-			send = () -> client.sendTCP(state);
+			send = () -> client.sendTCP(conf.asByteArray(state));
 		}
 		
 		

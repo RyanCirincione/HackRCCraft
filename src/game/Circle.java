@@ -2,6 +2,7 @@ package game;
 
 //TODO: STUB
 public class Circle extends Hitbox {
+	private static final long serialVersionUID = 1L;
 	Vector pos;
 	double radius;
 	
