@@ -14,7 +14,7 @@ public class State {
 		for(int i = 0; i < shards.length; i++) {
 			Shard shard = shards[i] = new Shard();
 			shard.units = new ArrayList<>(players);
-			for(int j = 0; j < shard.units.size(); j++) {
+			for(int j = 0; j < players; j++) {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
@@ -83,6 +83,6 @@ public class State {
 		}
 	}
 	void merge(State state) {
-		
+		//TODO: Merge states
 	}
 }

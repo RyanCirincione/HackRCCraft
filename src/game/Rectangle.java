@@ -10,48 +10,48 @@ public class Rectangle extends Hitbox {
 	}
 	
 	@Override
-	public float x()
+	public double x()
 	{
-		return (float)pos.getX();
+		return pos.getX();
 	}
 
 	@Override
-	public Hitbox setX(float x)
+	public Hitbox setX(double x)
 	{
 		pos.setX(x);
 		return null;
 	}
 
 	@Override
-	public float y()
+	public double y()
 	{
 		return (float)pos.getY();
 	}
 
 	@Override
-	public Hitbox setY(float y)
+	public Hitbox setY(double y)
 	{
 		pos.setY(y);
 		return this;
 	}
 	
-	float width()
+	double width()
 	{
-		return (float)dim.getX();
+		return dim.getX();
 	}
 	
-	Hitbox setWidth(float width)
+	Hitbox setWidth(double width)
 	{
 		dim.setX(width);
 		return this;
 	}
 	
-	float height()
+	double height()
 	{
 		return (float)dim.getY();
 	}
 	
-	Hitbox setHeight(float height)
+	Hitbox setHeight(double height)
 	{
 		dim.setY(height);
 		return this;
@@ -78,4 +78,9 @@ public class Rectangle extends Hitbox {
 		return false;
 	}
 	
+	public void merge(Hitbox box) {
+		Rectangle other = (Rectangle)box;
+		pos.set(other.x(), other.y());
+		dim.set(other.width(), other.height());
+	}
 }
