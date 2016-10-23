@@ -138,20 +138,25 @@ public class Game extends JPanel
 		network.update();
 	}
 	
+	Vector camera = new Vector(0, 0);
+	
 	public void paintComponent(Graphics gr)
 	{
 		super.paintComponent(gr);
 		Graphics2D g = (Graphics2D) gr;
 		State.Shard shard = network.state.shards[network.state.allegiance];
+		Hitbox box = network.state.characters[network.state.allegiance].box;
+		camera.add(new Vector((box.x() - G_WIDTH/2 - camera.getX())/12,
+				(box.y() - G_HEIGHT/2 - camera.getY())/12));
 		
-		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+		g.setColor(new Color(255, 0, 0));
 
 		for(int c = 0; c < shard.characters.length; c++)
 		{
 			Character cha = shard.characters[c];
 			if(cha != null)
-				g.fillOval((int)(cha.box.x() - ((Circle)cha.box).radius),
-						(int)(cha.box.y() - ((Circle)cha.box).radius),
+				g.fillOval((int)(cha.box.x() - ((Circle)cha.box).radius - camera.getX()),
+						(int)(cha.box.y() - ((Circle)cha.box).radius - camera.getY()),
 						 (int)(((Circle)cha.box).radius*2), (int)(((Circle)cha.box).radius*2));
 		}
 		
@@ -160,21 +165,22 @@ public class Game extends JPanel
 			{
 				Unit unit = shard.units.get(i).get(j);
 				if(shard.units.get(i).get(j).box instanceof Circle)
-					g.fillOval((int)(unit.box.x() - ((Circle)unit.box).radius),
-							(int)(unit.box.y() - ((Circle)unit.box).radius),
+					g.fillOval((int)(unit.box.x() - ((Circle)unit.box).radius - camera.getX()),
+							(int)(unit.box.y() - ((Circle)unit.box).radius - camera.getY()),
 							 (int)(((Circle)unit.box).radius*2), (int)(((Circle)unit.box).radius*2));
 				else
-					g.fillRect((int)unit.box.x(), (int)unit.box.y(),
+					g.fillRect((int)(unit.box.x() - camera.getX()), (int)(unit.box.y() - camera.getY()),
 							(int)((Rectangle)unit.box).dim.getX(), (int)((Rectangle)unit.box).dim.getY());
 			}
 
-		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+		g.setColor(new Color(0, 0, 255));
 		
 		for(int x = 0; x < shard.buildings.data.size(); x++)
 			for(int y = 0; y < shard.buildings.data.get(x).size(); y++)
 				if(shard.buildings.data.get(x).get(y) != null)
 				{
-					g.fillRect(x*Tilemap.TILE_SIZE, y*Tilemap.TILE_SIZE,
+					g.fillRect((int)(x*Tilemap.TILE_SIZE - camera.getX()),
+							(int)(y*Tilemap.TILE_SIZE - camera.getY()),
 							Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
 				}
 	}
