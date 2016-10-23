@@ -92,19 +92,19 @@ public class Game extends JPanel
 			{
 				if(e.getKeyCode() == KeyEvent.VK_W)
 				{
-					state.characters[state.allegiance].speed.setY(-1);
+					state.characters[state.allegiance].speed.setY(-5);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_S)
 				{
-					state.characters[state.allegiance].speed.setY(1);
+					state.characters[state.allegiance].speed.setY(5);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_A)
 				{
-					state.characters[state.allegiance].speed.setX(-1);
+					state.characters[state.allegiance].speed.setX(-5);
 				}
 				if(e.getKeyCode() == KeyEvent.VK_D)
 				{
-					state.characters[state.allegiance].speed.setX(1);
+					state.characters[state.allegiance].speed.setX(5);
 				}
 			}
 			
