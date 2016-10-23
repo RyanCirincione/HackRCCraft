@@ -48,6 +48,6 @@ public class State {
 	}
 	
 	void merge(State state) {
-		
+		//TODO: Merge states
 	}
 }

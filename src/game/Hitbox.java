@@ -8,4 +8,5 @@ public abstract class Hitbox {
 	abstract boolean contains(Vector point);
 	abstract boolean collides(Circle circ);
 	abstract boolean collides(Rectangle rect);
+	abstract void merge(Hitbox other);
 }

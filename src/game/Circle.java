@@ -81,4 +81,10 @@ public class Circle extends Hitbox {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public void merge(Hitbox box) {
+		Circle circ = (Circle)box;
+		pos.set(circ.x(), circ.y());
+		radius = circ.radius;
+	}
 }

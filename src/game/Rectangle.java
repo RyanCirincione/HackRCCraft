@@ -78,4 +78,9 @@ public class Rectangle extends Hitbox {
 		return false;
 	}
 	
+	public void merge(Hitbox box) {
+		Rectangle other = (Rectangle)box;
+		pos.set(other.x(), other.y());
+		dim.set(other.width(), other.height());
+	}
 }
