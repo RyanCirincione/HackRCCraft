@@ -150,6 +150,9 @@ public class Game extends JPanel
 				(box.y() - G_HEIGHT/2 - camera.getY())/12));
 		
 		g.setColor(new Color(255, 0, 0));
+		for(int i = 0; i < network.state.players; i++)
+			for(int j = 0; j < network.state.players; j++)
+				System.out.println("Shard: " + i + " " + j + " " + network.state.shards[i].characters[j]);
 
 		for(int c = 0; c < shard.characters.length; c++)
 		{

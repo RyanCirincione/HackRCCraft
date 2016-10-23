@@ -27,8 +27,7 @@ public class State implements Serializable  {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
-			for(int j = 0; j < shard.characters.length; j++)
-				shard.characters[j] = characters[j];
+			shard.characters[i] = characters[i];
 			shard.buildings = new Tilemap<>();
 			shard.buildings.set(new Reasoursepatch(), 0, 236);
 			//
@@ -87,16 +86,18 @@ public class State implements Serializable  {
 					if(current.characters[c].box.x() >= 608)
 					{
 						if(i < 1)
-					{
-						current.characters[i + 1] = current.characters[i];
-						current.characters[i] = null;
+						{
+							shards[i + 1].characters[c] = current.characters[c];
+							current.characters[c].box.setX(600);
+							current.characters[c] = null;
+						}
+						else
+						{
+							shards[i - 1].characters[c] = current.characters[c];
+							current.characters[c].box.setX(600);
+							current.characters[c] = null;
+						}
 					}
-					else
-					{
-						current.characters[i - 1] = current.characters[i];
-						current.characters[i] = null;
-					}
-				}
 			}
 		}
 		for(int i = 0; i < characters.length; i++)
