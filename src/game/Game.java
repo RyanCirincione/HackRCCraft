@@ -161,5 +161,15 @@ public class Game extends JPanel
 					g.fillRect((int)unit.box.x(), (int)unit.box.y(),
 							(int)((Rectangle)unit.box).dim.getX(), (int)((Rectangle)unit.box).dim.getY());
 			}
+
+		g.setColor(new Color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255)));
+		
+		for(int x = 0; x < shard.buildings.data.size(); x++)
+			for(int y = 0; y < shard.buildings.data.get(x).size(); y++)
+				if(shard.buildings.get(x, y) != null)
+				{
+					g.fillRect(x*Tilemap.TILE_SIZE, y*Tilemap.TILE_SIZE,
+							Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
+				}
 	}
 }
