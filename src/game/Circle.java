@@ -47,7 +47,7 @@ public class Circle extends Hitbox {
 		return (float)radius;
 	}
 	
-	Hitbox setRadius(float radius){
+	public Hitbox setRadius(float radius){
 		this.radius = radius;
 		return this;
 	}
