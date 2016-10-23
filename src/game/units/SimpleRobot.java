@@ -1,9 +1,24 @@
 package game.units;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import game.State;
 import game.Unit;
 
 public class SimpleRobot extends Unit {
+	
+	public SimpleRobot(){
+		try
+		{
+			img = ImageIO.read(new File("res/Mob.png"));
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void update(State state) {

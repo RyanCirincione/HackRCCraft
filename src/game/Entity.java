@@ -1,9 +1,11 @@
 package game;
 
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 
 public abstract class Entity implements Serializable {
 	private static final long serialVersionUID = 1L;
+	public BufferedImage img = null;
 	public Hitbox box;
 	public float health;
 	/** @player The player that controls the entity. */

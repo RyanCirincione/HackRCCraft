@@ -135,6 +135,6 @@ public class State implements Serializable  {
 	
 	void merge(State state) {
 		//TODO: Merge states
-		System.out.println(state.characters[1].box);
+		System.out.println(state.characters[0].box);
 	}
 }
