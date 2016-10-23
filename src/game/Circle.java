@@ -1,11 +1,20 @@
 package game;
+
 //TODO: STUB
 public class Circle extends Hitbox {
+	private static final long serialVersionUID = 1L;
 	Vector pos;
 	double radius;
 	
-	public Circle(){
+	public Circle() {
+		pos = new Vector();
 		radius = 0;
+	}
+	
+	public Circle(double x, double y, double radius)
+	{
+		pos = new Vector(x, y);
+		this.radius = radius;
 	}
 
 	@Override
