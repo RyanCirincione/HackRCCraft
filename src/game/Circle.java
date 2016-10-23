@@ -87,4 +87,14 @@ public class Circle extends Hitbox {
 		pos.set(circ.x(), circ.y());
 		radius = circ.radius;
 	}
+
+	@Override
+	public double centerX() {
+		return pos.getX();
+	}
+
+	@Override
+	public double centerY() {
+		return pos.getY();
+	}
 }

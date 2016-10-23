@@ -26,6 +26,7 @@ public class State {
 	int players;
 	
 	public static class Shard {
+		/**@units First dimension is player who owns it, second is the unit. */
 		public ArrayList<ArrayList<Unit>> units;
 		public Character[] characters;
 		public Tilemap<Building> buildings;

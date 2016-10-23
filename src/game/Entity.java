@@ -3,11 +3,12 @@ package game;
 public abstract class Entity {
 	public Hitbox box;
 	public float health;
+	/**@player The player that controls the entity. */
 	public int player;
 	public int shard;
 	public boolean dead;
 	
-	void takeHit(float amount) {
+	public void takeHit(float amount) {
 		if(health < amount) dead = true;
 		else health -= amount;
 	}
