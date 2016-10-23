@@ -1,4 +1,7 @@
 package game;
+
+import java.nio.ByteBuffer;
+
 /**
  * MIT License
 
@@ -309,5 +312,15 @@ public class Vector {
 	@Override
 	public String toString() {
 		return "<" + x + ", " + y + ">";
+	}
+	
+	public void serialize(ByteBuffer buffer) {
+		buffer.putFloat((float)x);
+		buffer.putFloat((float)y);
+	}
+	
+	public void deserialize(ByteBuffer buffer) {
+		x = buffer.getFloat();
+		y = buffer.getFloat();
 	}
 }

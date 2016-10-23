@@ -4,22 +4,28 @@ import java.util.ArrayList;
 public class State {
 	static int SHARD_WIDTH = 640, SHARD_HEIGHT = 480;
 	public int allegiance;
+	private byte[] buffer;
 	
 	State() {
+		buffer = new byte[1024];
 		players = 2;
 		characters = new Character[players];
-		for(int i = 0; i < characters.length; i++) 
+		for(int i = 0; i < characters.length; i++) {
 			characters[i] = new Character();
+			characters[i].box = new Circle();
+			System.out.println(i);
+		}
 		shards = new Shard[players];
 		for(int i = 0; i < shards.length; i++) {
-			Shard shard = shards[i] = new Shard();
+			shards[i] = new Shard();
+			Shard shard = shards[i];
 			shard.units = new ArrayList<>(players);
 			for(int j = 0; j < players; j++) {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
-			for(int j = 0; i < shard.characters.length; i++)
-				shard.characters[i] = new Character();
+			for(int j = 0; j < shard.characters.length; j++)
+				shard.characters[j] = new Character();
 			shard.buildings = new Tilemap<>();
 		}
 	}
@@ -64,9 +70,6 @@ public class State {
 						}
 						current.units.get(i).remove(current.units.get(i).get(j));
 					}
-		
-	
-				
 				}
 			}
 		}
@@ -90,6 +93,11 @@ public class State {
 			}
 		}
 	}
+	
+	public byte[] serialize() {
+		
+	}
+	
 	void merge(State state) {
 		//TODO: Merge states
 	}

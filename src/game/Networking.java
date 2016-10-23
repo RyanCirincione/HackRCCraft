@@ -22,12 +22,15 @@ public class Networking {
 			point.getKryo().register(State.class);
 			point.getKryo().register(State.Shard.class);
 			point.getKryo().register(State.Shard[].class);
+			point.getKryo().register(Character.class);
 			point.getKryo().register(Character[].class);
 			point.getKryo().register(Tilemap.class);
 			point.getKryo().register(java.util.ArrayList.class);
 			point.getKryo().register(Unit.class);
 			point.getKryo().register(Hitbox.class);
 			point.getKryo().register(Vector.class);
+			point.getKryo().register(Circle.class);
+			point.getKryo().register(Rectangle.class);
 			point.addListener(this);
 		}
 		

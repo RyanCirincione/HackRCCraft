@@ -1,10 +1,14 @@
 package game;
+
+import java.nio.ByteBuffer;
+
 //TODO: STUB
 public class Circle extends Hitbox {
 	Vector pos;
 	double radius;
 	
-	public Circle(){
+	public Circle() {
+		pos = new Vector();
 		radius = 0;
 	}
 
@@ -86,5 +90,17 @@ public class Circle extends Hitbox {
 		Circle circ = (Circle)box;
 		pos.set(circ.x(), circ.y());
 		radius = circ.radius;
+	}
+	
+	public void serialize(ByteBuffer buffer) {
+		buffer.put((byte)1);
+		pos.serialize(buffer);
+		buffer.putFloat((float)radius);
+	}
+	
+	public void deserialize(ByteBuffer buffer) {
+		buffer.get();
+		pos.deserialize(buffer);
+		radius = buffer.getFloat();
 	}
 }
