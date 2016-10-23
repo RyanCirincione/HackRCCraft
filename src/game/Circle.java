@@ -106,4 +106,9 @@ public class Circle extends Hitbox {
 	public double centerY() {
 		return pos.getY();
 	}
+	
+	public String toString()
+	{
+		return x() + " " + y();
+	}
 }
