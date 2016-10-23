@@ -90,15 +90,46 @@ public class Game extends JPanel
 				
 			}
 		});
+		State state = network.state;
 		this.addKeyListener(new KeyAdapter(){
 			public void keyPressed(KeyEvent e)
 			{
-				
+				if(e.getKeyCode() == KeyEvent.VK_W)
+				{
+					state.characters[state.allegiance].speed.setY(-1);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_S)
+				{
+					state.characters[state.allegiance].speed.setY(1);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_A)
+				{
+					state.characters[state.allegiance].speed.setX(-1);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_D)
+				{
+					state.characters[state.allegiance].speed.setX(1);
+				}
 			}
 			
 			public void keyReleased(KeyEvent e)
 			{
-				
+				if(e.getKeyCode() == KeyEvent.VK_W)
+				{
+					state.characters[state.allegiance].speed.setY(0);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_S)
+				{
+					state.characters[state.allegiance].speed.setY(0);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_A)
+				{
+					state.characters[state.allegiance].speed.setX(0);
+				}
+				if(e.getKeyCode() == KeyEvent.VK_D)
+				{
+					state.characters[state.allegiance].speed.setX(0);
+				}
 			}
 		});
 		
