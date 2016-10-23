@@ -18,6 +18,8 @@ public class State {
 				shard.units.add(new ArrayList<>());
 			}
 			shard.characters = new Character[players];
+			for(int j = 0; i < shard.characters.length; i++)
+				shard.characters[i] = new Character();
 			shard.buildings = new Tilemap<>();
 		}
 	}
@@ -83,7 +85,7 @@ public class State {
 			{
 				for(int q = 0; q < shards[i].units.get(j).size(); q++)
 				{
-				shards[i].units.get(j).get(q).update(this);
+					shards[i].units.get(j).get(q).update(this);
 				}
 			}
 		}
