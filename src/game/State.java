@@ -2,6 +2,8 @@ package game;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import game.buildings.Barracks;
+
 public class State implements Serializable  {
 	/**
 	 * 
@@ -31,7 +33,9 @@ public class State implements Serializable  {
 				shard.characters[j] = characters[j];
 			shard.buildings = new Tilemap<>();
 			shard.buildings.set(new Reasoursepatch(), 0, 236);
-			//
+			Rectangle h = new Rectangle(0, 0, 32, 32);
+			Barracks b = new Barracks(h, 100, 0, 0, 120);
+			shard.buildings.set(b, (int)b.box.x(), (int)b.box.y());
 		}
 	}
 	int players;
@@ -57,12 +61,12 @@ public class State implements Serializable  {
 				
 				int tempx = (int)current.units.get(i).get(j).box.x();
 				System.out.println(tempx);
-				//				int tempy = (int)current.units.get(i).get(j).box.y();
+				//int tempy = (int)current.units.get(i).get(j).box.y();
 				if(tempx >= 608)
 				{
 					if(players == 2)
 					{
-						//checks to see what aray the unit is in
+						//checks to see what array the unit is in
 						//spawns units 1 pixel in front of the portal can be changed by modifing the setx int
 						if (i < 1)  
 						{
@@ -115,6 +119,16 @@ public class State implements Serializable  {
 				for(int q = 0; q < shards[i].units.get(j).size(); q++)
 				{
 					shards[i].units.get(j).get(q).update(this);
+				}
+			}
+			for(int x = 0; x < shards[i].buildings.data.size(); x++)
+			{
+				for(int y = 0; y < shards[i].buildings.data.get(x).size(); y++)
+				{
+					if(shards[i].buildings.data.get(x).get(y) != null)
+					{
+						shards[i].buildings.data.get(x).get(y).update(this);
+					}
 				}
 			}
 		}

@@ -11,6 +11,14 @@ public abstract class Entity implements Serializable {
 	public int shard;
 	public boolean dead;
 
+	public Entity(Hitbox box, float health, int player, int shard)
+	{
+		this.box = box;
+		this.health = health;
+		this.player = player;
+		this.shard = shard;
+	}
+	
 	public Entity() {
 		box = null;
 	}

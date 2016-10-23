@@ -1,16 +1,29 @@
 package game.buildings;
 import game.Building;
+import game.Hitbox;
 import game.State;
 import game.Unit;
 /**Basic tower that attacks nearest thing to it.*/
 public class BasicTower extends Building{
 	/** @range Maximum distance the building can shoot in pixels.*/
-	private int range = 256;
+	private int range;
 	/** @damage Amount of hit points in damage the tower does.*/ 
-	private int damage = 10;
+	private int damage;
 	/** @delay Number of ticks before tower can attack again.*/
-	private int maxDelay = 120;
+	private int maxDelay;
 	private int currentDelay = 0;
+	
+	public BasicTower(Hitbox box, float health, int player, int shard, int range, int damage, int maxDelay)
+	{
+		this.box = box;
+		this.health = health;
+		this.player = player;
+		this.shard = shard;
+		this.range = range;
+		this.damage = damage;
+		this.maxDelay = maxDelay;
+	}
+	
 	public void update(State state)
 	{
 		/** @closest Unit that is closest to the tower.*/

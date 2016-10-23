@@ -4,6 +4,12 @@ package game;
 public class Rectangle extends Hitbox {
 	Vector pos, dim;
 	
+	public Rectangle(double x, double y, double width, double height)
+	{
+		pos = new Vector(x, y);
+		dim = new Vector(width, height);
+	}
+	
 	public Rectangle()
 	{
 		pos = new Vector();
